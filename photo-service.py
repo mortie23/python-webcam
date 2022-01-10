@@ -3,6 +3,7 @@
 
 # importing OpenCV library
 import cv2
+import time
 import modules.timeminute as tm
 
 # initialize the camera
@@ -12,7 +13,7 @@ import modules.timeminute as tm
 cam_port = 0
 cam = cv2.VideoCapture(cam_port)
 
-def capture:
+def capture():
     # reading the input using the camera
     result, image = cam.read()
 
