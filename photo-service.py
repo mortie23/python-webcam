@@ -10,10 +10,10 @@ import modules.timeminute as tm
 # If you have multiple camera connected with
 # current device, assign a value in cam_port
 # variable according to that
-cam_port = 0
-cam = cv2.VideoCapture(cam_port)
 
 def capture():
+    cam_port = 0
+    cam = cv2.VideoCapture(cam_port)
     # reading the input using the camera
     result, image = cam.read()
 
@@ -22,6 +22,7 @@ def capture():
         # saving image in local storage
         imagename = f'webcam-{tm.timeminute()}'
         cv2.imwrite(f"/var/www/html/webcam/{imagename}.jpg", image)
+        cam.release()
 
     # If captured image is corrupted, moving to else part
     else:
