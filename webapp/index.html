@@ -1,9 +1,23 @@
 <html>
-  <img src="webcam/webcam-20220110-1700.jpg"/>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <input id='timestamp' type='text' value='202201101700'/>
+  <button onclick='showWebcam()'>Go</button>
+  <img id='webcamimg' src="webcam/webcam-202201101700.jpg"/>
   <script>
-    setInterval(function() {
-      console.log(Date());
-    }, 1 * 1000);
-    
+    function showWebcam() {
+      let timestampStr=document.getElementById('timestamp').value;
+      var timestamp = moment(timestampStr, 'YYYYMMDDHHmm');
+      let webcamimg=document.getElementById('webcamimg');
+      console.log(webcamimg.src);
+      // every second update the image
+      setInterval(function() {
+        timestamp = timestamp.add(1,'minutes')
+        timestampStr = timestamp.format('YYYYMMDDHHmm')
+        // update the image
+        webcamimg.src=`webcam/webcam-${timestampStr}.jpg`
+      }, 1 * 1000);
+    }
   </script>
 </html>
